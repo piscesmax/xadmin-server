@@ -123,12 +123,13 @@ class DeptSerializer(BaseRoleRuleInfo):
         extra_kwargs = {'pk': {'read_only': True}, 'roles': {'read_only': True}, 'rules': {'read_only': True}}
 
     user_count = serializers.SerializerMethodField(read_only=True)
-    parent = BasePrimaryKeyRelatedField(queryset=models.DeptInfo.objects, allow_null=True)
+    # parent = BasePrimaryKeyRelatedField(queryset=models.DeptInfo.objects, allow_null=True)
 
     def validate(self, attrs):
         parent = attrs.get('parent')
         if not parent:
-            attrs['parent'] = self.request.user.dept
+            pass
+            # attrs['parent'] = self.request.user.dept
         return attrs
 
     def update(self, instance, validated_data):
